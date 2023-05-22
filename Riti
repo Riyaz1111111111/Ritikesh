@@ -1,0 +1,71 @@
+# Ritikesh
+# Import necessary modules
+
+from tkinter import Tk, Label, Button, Entry, Listbox, Scrollbar, END
+
+# Create the main application window
+
+window = Tk()
+
+window.title("Shoe Store App")
+
+# Create a list to store shoe inventory
+
+inventory = []
+
+# Function to add a new shoe to the inventory
+
+def add_shoe():
+
+    shoe = shoe_entry.get()
+
+    inventory.append(shoe)
+
+    shoe_list.insert(END, shoe)
+
+    shoe_entry.delete(0, END)
+
+# Function to remove a selected shoe from the inventory
+
+def remove_shoe():
+
+    selected_shoe = shoe_list.get(shoe_list.curselection())
+
+    inventory.remove(selected_shoe)
+
+    shoe_list.delete(shoe_list.curselection())
+
+# Create and configure GUI elements
+
+shoe_label = Label(window, text="Shoe:")
+
+shoe_label.pack()
+
+shoe_entry = Entry(window)
+
+shoe_entry.pack()
+
+add_button = Button(window, text="Add Shoe", command=add_shoe)
+
+add_button.pack()
+
+shoe_list = Listbox(window)
+
+shoe_list.pack()
+
+remove_button = Button(window, text="Remove Shoe", command=remove_shoe)
+
+remove_button.pack()
+
+scrollbar = Scrollbar(window)
+
+scrollbar.pack(side="right", fill="y")
+
+shoe_list.config(yscrollcommand=scrollbar.set)
+
+scrollbar.config(command=shoe_list.yview)
+
+# Start the application
+
+window.mainloop()
+
